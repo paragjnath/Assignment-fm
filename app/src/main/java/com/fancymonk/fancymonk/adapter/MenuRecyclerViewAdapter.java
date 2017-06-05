@@ -70,6 +70,11 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         return mMenuList.size();
     }
 
+    public List<Menu> getMenuList(){
+        return mMenuList;
+    }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public   TextView mMenuName;

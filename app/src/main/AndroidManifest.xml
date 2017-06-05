@@ -24,7 +24,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fancymonk.fancymonk.activity.LoginActivity" />
         </activity>
-        <activity android:name=".activity.MenuActivity"></activity>
+        <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".OrderActivity"></activity>
     </application>
 
 </manifest>

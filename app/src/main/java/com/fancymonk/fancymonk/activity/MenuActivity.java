@@ -1,5 +1,6 @@
 package com.fancymonk.fancymonk.activity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -8,9 +9,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.fancymonk.fancymonk.OrderActivity;
 import com.fancymonk.fancymonk.R;
 import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
 import com.fancymonk.fancymonk.model.Menu;
@@ -58,5 +61,27 @@ public class MenuActivity extends AppCompatActivity {
         mAdapter = new MenuRecyclerViewAdapter(mMenu);
 
         mRecyclerView.setAdapter(mAdapter);
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                List<Menu> menu = ((MenuRecyclerViewAdapter) mAdapter).getMenuList();
+                ArrayList<Menu> checkedMenu = new ArrayList<Menu>();
+
+                for(int i = 0; i<menu.size(); i++){
+
+                    Menu menuItem = menu.get(i);
+                    if (menuItem.isSelected()){
+                        checkedMenu.add(menuItem);
+                    }
+                }
+
+                Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
+                intent.putParcelableArrayListExtra("selectedMenu",checkedMenu);
+                startActivity(intent);
+
+            }
+        });
     }
 }
