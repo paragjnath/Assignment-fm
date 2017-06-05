@@ -12,7 +12,6 @@ import com.fancymonk.fancymonk.model.Menu;
 
 import java.util.List;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 /**
  * Created by Pavilion on 05-06-2017.
@@ -55,6 +54,12 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             @Override
             public void onClick(View view) {
 
+                CheckBox checkBox = (CheckBox) view;
+
+                Menu menuItem = (Menu) checkBox.getTag();
+                menuItem.setSelected(checkBox.isChecked());
+                mMenuList.get(pos).setSelected(checkBox.isChecked());
+
             }
         });
 
@@ -62,7 +67,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mMenuList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -80,8 +85,6 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             mMenuDescription = (TextView) mView.findViewById(R.id.tvMenuDescription);
             mMenuItemPrice = (TextView) mView.findViewWithTag(R.id.tvMenuItemPrice);
             mCheckBox = (CheckBox) mView.findViewById(R.id.chkSelected);
-
-
 
         }
     }
