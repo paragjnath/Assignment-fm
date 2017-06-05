@@ -1,6 +1,5 @@
 package com.fancymonk.fancymonk.activity;
 
-import android.graphics.Movie;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;

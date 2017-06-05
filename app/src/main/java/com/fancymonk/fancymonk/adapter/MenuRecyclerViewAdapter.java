@@ -1,8 +1,10 @@
 package com.fancymonk.fancymonk.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.fancymonk.fancymonk.R;
@@ -25,7 +27,11 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+
+        View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_items,parent,false);
+
+        ViewHolder viewHolder = new ViewHolder(itemLayoutView);
+        return viewHolder;
     }
 
     @Override
@@ -44,6 +50,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         TextView mMenuName;
         TextView mMenuDescription;
         TextView mMenuItemPrice;
+        CheckBox mCheckBox;
 
         public ViewHolder(View view){
             super(view);
@@ -51,6 +58,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             mMenuName = (TextView) mView.findViewById(R.id.tvMenuName);
             mMenuDescription = (TextView) mView.findViewById(R.id.tvMenuDescription);
             mMenuItemPrice = (TextView) mView.findViewWithTag(R.id.tvMenuItemPrice);
+            mCheckBox = (CheckBox) mView.findViewById(R.id.chkSelected);
 
         }
     }
