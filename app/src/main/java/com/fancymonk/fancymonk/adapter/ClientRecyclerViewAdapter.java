@@ -12,8 +12,6 @@ import com.fancymonk.fancymonk.model.Client;
 
 import java.util.List;
 
-import android.support.v7.appcompat.R.styleable.View;
-import android.support.v7.recyclerview.R.styleable.RecyclerView;
 
 
 /**
