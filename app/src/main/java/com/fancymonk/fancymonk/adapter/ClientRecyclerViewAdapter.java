@@ -37,8 +37,8 @@ public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycl
             mView = view;
             mName = (TextView) mView.findViewById(R.id.name);
             mLocation = (TextView) mView.findViewById(R.id.location);
-            mTagOne = (TextView) mView.findViewWithTag(R.id.tagOne);
-            mTagTwo = (TextView) mView.findViewWithTag(R.id.tagTwo);
+            mTagOne = (TextView) mView.findViewById(R.id.tagOne);
+            mTagTwo = (TextView) mView.findViewById(R.id.tagTwo);
             mImageView = (ImageView) mView.findViewById(R.id.imageView);
         }
     }
@@ -62,8 +62,8 @@ public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycl
         Client client = mClientList.get(position);
         holder.mName.setText(client.getName());
         holder.mLocation.setText(client.getLocation());
-        //holder.mTagOne.setText(client.getmTagOne());
-        //holder.mTagTwo.setText(client.getmTagTwo());
+        holder.mTagOne.setText(client.getmTagOne());
+        holder.mTagTwo.setText(client.getmTagTwo());
 
 
     }

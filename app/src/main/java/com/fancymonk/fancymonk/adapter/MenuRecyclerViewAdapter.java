@@ -31,7 +31,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_items,parent,false);
+        View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_items,null);
 
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;
@@ -46,11 +46,11 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
         holder.mMenuDescription.setText(mMenuList.get(position).getDescription());
 
-        holder.mMenuItemPrice.setText(mMenuList.get(position).getPrice()+"");
+        holder.mMenuItemPrice.setText(mMenuList.get(position).getPrice().toString());
 
-        holder.mCheckBox.setTag(mMenuList.get(position));
+       holder.mCheckBox.setTag(mMenuList.get(position));
 
-        holder.mCheckBox.setOnClickListener(new View.OnClickListener() {
+       holder.mCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -70,21 +70,19 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         return mMenuList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        View mView;
-        TextView mMenuName;
-        TextView mMenuDescription;
-        TextView mMenuItemPrice;
-        CheckBox mCheckBox;
+        public   TextView mMenuName;
+        public   TextView mMenuDescription;
+        public   TextView mMenuItemPrice;
+        public   CheckBox mCheckBox;
 
         public ViewHolder(View view){
             super(view);
-            mView = view;
-            mMenuName = (TextView) mView.findViewById(R.id.tvMenuName);
-            mMenuDescription = (TextView) mView.findViewById(R.id.tvMenuDescription);
-            mMenuItemPrice = (TextView) mView.findViewWithTag(R.id.tvMenuItemPrice);
-            mCheckBox = (CheckBox) mView.findViewById(R.id.chkSelected);
+            mMenuName = (TextView) view.findViewById(R.id.tvMenuName);
+            mMenuDescription = (TextView) view.findViewById(R.id.tvMenuDescription);
+            mMenuItemPrice = (TextView) view.findViewById(R.id.tvItemPrice);
+            mCheckBox = (CheckBox) view.findViewById(R.id.chkSelected);
 
         }
     }
