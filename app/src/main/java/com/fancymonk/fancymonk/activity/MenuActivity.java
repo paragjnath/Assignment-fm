@@ -1,9 +1,13 @@
 package com.fancymonk.fancymonk.activity;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -20,12 +24,24 @@ public class MenuActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private List<Menu> mMenu;
     private Button btnConfirm;
+    private Toolbar mToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //change the color of the upArrow to white
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
 
         mMenu = new ArrayList<Menu>();
