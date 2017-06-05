@@ -30,6 +30,7 @@ public class MenuActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +41,17 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         //change the color of the upArrow to white
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null)
+        {
+            getSupportActionBar().setTitle(bundle.getString("name"));
+        }
 
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
 

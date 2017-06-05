@@ -58,7 +58,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
                 Menu menuItem = (Menu) checkBox.getTag();
                 menuItem.setSelected(checkBox.isChecked());
-                mMenuList.get(pos).setSelected(checkBox.isChecked());
+                //mMenuList.get(pos).setSelected(checkBox.isChecked());
 
             }
         });
@@ -91,6 +91,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
         }
     }
+
 
 
 }

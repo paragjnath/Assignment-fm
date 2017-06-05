@@ -1,5 +1,7 @@
 package com.fancymonk.fancymonk.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fancymonk.fancymonk.R;
+import com.fancymonk.fancymonk.activity.MenuActivity;
 import com.fancymonk.fancymonk.model.Client;
 
 import java.util.List;
@@ -21,6 +24,8 @@ import java.util.List;
 public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecyclerViewAdapter.ViewHolder>{
 
     private List<Client> mClientList;
+    Context ctxt;
+    String name;
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -44,8 +49,9 @@ public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycl
     }
 
 
-    public ClientRecyclerViewAdapter(List<Client> clientList) {
+    public ClientRecyclerViewAdapter(List<Client> clientList, Context context) {
         this.mClientList = clientList;
+        this.ctxt =context;
     }
 
     @Override
@@ -59,11 +65,20 @@ public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycl
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Client client = mClientList.get(position);
+        final Client client = mClientList.get(position);
         holder.mName.setText(client.getName());
         holder.mLocation.setText(client.getLocation());
         holder.mTagOne.setText(client.getmTagOne());
         holder.mTagTwo.setText(client.getmTagTwo());
+        name = client.getName();
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ctxt, MenuActivity.class);
+                intent.putExtra("name",name);
+                ctxt.startActivity(intent);
+            }
+        });
 
 
     }
