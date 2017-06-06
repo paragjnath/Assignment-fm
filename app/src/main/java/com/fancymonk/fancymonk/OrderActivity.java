@@ -1,5 +1,6 @@
 package com.fancymonk.fancymonk;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fancymonk.fancymonk.activity.ConfirmActivity;
 import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
 import com.fancymonk.fancymonk.adapter.OrderRecyclerViewAdapter;
 import com.fancymonk.fancymonk.model.Menu;
@@ -77,6 +79,9 @@ public class OrderActivity extends AppCompatActivity {
         btnDispatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);
+                startActivity(intent);
 
             }
         });

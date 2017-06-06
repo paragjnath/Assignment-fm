@@ -24,7 +24,7 @@ public class ConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbarOrder);
+        mToolbar = (Toolbar) findViewById(R.id.toolbarConfirm);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

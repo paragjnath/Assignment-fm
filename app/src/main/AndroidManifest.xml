@@ -26,7 +26,6 @@
         </activity>
         <activity android:name=".activity.MenuActivity" />
         <activity android:name=".OrderActivity" />
-        <activity android:name=".model.ConfirmActivity" />
         <activity android:name=".activity.ConfirmActivity"></activity>
     </application>
 
