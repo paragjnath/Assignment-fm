@@ -1,33 +1,87 @@
 package com.fancymonk.fancymonk;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
+import com.fancymonk.fancymonk.adapter.OrderRecyclerViewAdapter;
 import com.fancymonk.fancymonk.model.Menu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
 
     private double mTotalPrice;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private ArrayList<Menu> selectedItems ;
+    private Toolbar mToolbar;
+    private Button btnDispatch;
+    private TextView mOrderAmount;
+    private TextView mOrderNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        mOrderAmount = (TextView) findViewById(R.id.tvOrderAmount);
+        mOrderNumber = (TextView) findViewById(R.id.tvOrderNumber);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbarOrder);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        //change the color of the upArrow to white
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
         mTotalPrice = 0;
 
-        ArrayList<Menu> selectedItems = this.getIntent().getParcelableArrayListExtra("selectedMenu");
+        selectedItems = this.getIntent().getParcelableArrayListExtra("selectedMenu");
 
         for (int i = 0; i < selectedItems.size(); i++) {
 
             mTotalPrice = mTotalPrice + selectedItems.get(i).getPrice();
 
             Log.v("orderActivity", "SELECTED " + selectedItems.get(i).getName());
+
         }
 
         Toast.makeText(getApplicationContext(),"Total price is "+mTotalPrice,Toast.LENGTH_SHORT).show();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewOrder);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAdapter = new OrderRecyclerViewAdapter(selectedItems);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+        btnDispatch = (Button) findViewById(R.id.btnDispatch);
+        btnDispatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mOrderNumber.setText(selectedItems.size()+"");
+        mOrderAmount.setText(mTotalPrice+"");
     }
 }
