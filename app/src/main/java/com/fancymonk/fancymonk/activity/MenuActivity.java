@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 
 import com.fancymonk.fancymonk.OrderActivity;
 import com.fancymonk.fancymonk.R;
@@ -21,12 +22,14 @@ import com.fancymonk.fancymonk.model.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fancymonk.fancymonk.R.id.btnConfirm;
+
 public class MenuActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private List<Menu> mMenu;
-    private Button btnConfirm;
+    private RelativeLayout btnConfirm;
     private Toolbar mToolbar;
 
 
@@ -53,7 +56,7 @@ public class MenuActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(bundle.getString("name"));
         }
 
-        btnConfirm = (Button) findViewById(R.id.btnConfirm);
+        btnConfirm = (RelativeLayout) findViewById(R.id.btnConfirm);
 
         mMenu = new ArrayList<Menu>();
         for(int i=1; i<10; i++){

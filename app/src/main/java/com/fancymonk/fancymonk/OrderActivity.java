@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.fancymonk.fancymonk.model.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fancymonk.fancymonk.R.id.btnDispatch;
+
 public class OrderActivity extends AppCompatActivity {
 
     private double mTotalPrice;
@@ -30,7 +34,7 @@ public class OrderActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private ArrayList<Menu> selectedItems ;
     private Toolbar mToolbar;
-    private Button btnDispatch;
+    private RelativeLayout btnDispatch;
     private TextView mOrderAmount;
     private TextView mOrderNumber;
 
@@ -75,7 +79,7 @@ public class OrderActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        btnDispatch = (Button) findViewById(R.id.btnDispatch);
+        btnDispatch = (RelativeLayout) findViewById(R.id.btnDispatch);
         btnDispatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

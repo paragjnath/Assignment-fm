@@ -5,15 +5,38 @@
     android:orientation="vertical" >
 
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/btnConfirm"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true"
+    android:textColor="@color/grey"
+    android:background="@color/colorAccent">
 
-    <Button
-        android:id="@+id/btnConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="CONFIRM"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/grey"
-        android:background="@color/colorAccent"
-        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <ImageView
+            android:layout_width="22sp"
+            android:layout_height="22sp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/ic_fancymonk_white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="#ffff"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
 
 </RelativeLayout>
