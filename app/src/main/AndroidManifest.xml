@@ -25,7 +25,9 @@
                 android:value="com.fancymonk.fancymonk.activity.LoginActivity" />
         </activity>
         <activity android:name=".activity.MenuActivity" />
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".model.ConfirmActivity" />
+        <activity android:name=".activity.ConfirmActivity"></activity>
     </application>
 
 </manifest>
