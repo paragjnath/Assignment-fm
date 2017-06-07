@@ -25,7 +25,9 @@ public class ConfirmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarConfirm);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.grey));
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Confirm Receive");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

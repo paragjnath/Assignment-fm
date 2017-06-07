@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:id="@+id/imageView"
         android:layout_height="160dp"
-        android:src="@drawable/download"
+        android:src="@drawable/restaurant"
         android:scaleType="centerCrop"
         />
 

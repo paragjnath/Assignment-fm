@@ -47,9 +47,12 @@ public class OrderActivity extends AppCompatActivity {
         mOrderNumber = (TextView) findViewById(R.id.tvOrderNumber);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarOrder);
+
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Confirm Order");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         //change the color of the upArrow to white

@@ -10,19 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RelativeLayout;
-
 import com.fancymonk.fancymonk.OrderActivity;
 import com.fancymonk.fancymonk.R;
 import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
 import com.fancymonk.fancymonk.model.Menu;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.fancymonk.fancymonk.R.id.btnConfirm;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -41,6 +36,12 @@ public class MenuActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        Bundle bundle = getIntent().getExtras();
+
+        if(bundle!= null)
+        {
+            getSupportActionBar().setTitle(bundle.getString("name"));
+        }
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -49,13 +50,6 @@ public class MenuActivity extends AppCompatActivity {
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!= null)
-        {
-            getSupportActionBar().setTitle(bundle.getString("name"));
-        }
-
         btnConfirm = (RelativeLayout) findViewById(R.id.btnConfirm);
 
         mMenu = new ArrayList<Menu>();
