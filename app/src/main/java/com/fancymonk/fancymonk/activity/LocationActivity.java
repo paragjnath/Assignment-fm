@@ -1,12 +1,21 @@
 package com.fancymonk.fancymonk.activity;
+
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.fancymonk.fancymonk.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -18,10 +27,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class LocationActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
+public class LocationActivity extends AppCompatActivity implements LocationListener, OnMapReadyCallback {
 
     GoogleMap googleMap;
-
+    RelativeLayout mReachedButton;
+    Toolbar mToolbar;
+    private String mRestaurantName;
+    private int mItems;
+    private double mAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +45,43 @@ public class LocationActivity extends FragmentActivity implements LocationListen
             finish();
         }
         setContentView(R.layout.activity_location);
+
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbarLocation);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.grey));
+        setSupportActionBar(mToolbar);
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+
+            mRestaurantName = bundle.getString("name");
+            mItems = bundle.getInt("items");
+            mAmount = bundle.getDouble("amount");
+
+            getSupportActionBar().setTitle(mRestaurantName);
+        }
+
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+
+        //change the color of the upArrow to white
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+
+
+        mReachedButton = (RelativeLayout) findViewById(R.id.btnReached);
+        mReachedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
+                intent.putExtra("amount",mAmount);
+                intent.putExtra("items",mItems);
+                startActivity(intent);
+            }
+        });
+
         SupportMapFragment supportMapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
 

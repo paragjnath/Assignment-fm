@@ -1,5 +1,6 @@
 package com.fancymonk.fancymonk.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -38,11 +39,19 @@ public class OrderActivity extends AppCompatActivity {
     private RelativeLayout btnDispatch;
     private TextView mOrderAmount;
     private TextView mOrderNumber;
+    private String mRestaurantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+
+            mRestaurantName = bundle.getString("name");
+        }
 
         mOrderAmount = (TextView) findViewById(R.id.tvOrderAmount);
         mOrderNumber = (TextView) findViewById(R.id.tvOrderNumber);
@@ -88,7 +97,10 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
+                intent.putExtra("name",mRestaurantName);
+                intent.putExtra("amount",mTotalPrice);
+                intent.putExtra("items",selectedItems.size());
                 startActivity(intent);
 
             }

@@ -18,11 +18,22 @@ public class ConfirmActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private CaptureSignatureView mSig;
+    private int mItems;
+    private double mAmount;
+    private TextView tvNoOfItems;
+    private TextView tvTotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            mItems = bundle.getInt("items");
+            mAmount = bundle.getDouble("amount");
+        }
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarConfirm);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.grey));
@@ -50,6 +61,12 @@ public class ConfirmActivity extends AppCompatActivity {
 
             }
         });
+
+        tvNoOfItems = (TextView) findViewById(R.id.tvNoOfItems);
+        tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
+
+        tvNoOfItems.setText(mItems+"");
+        tvTotalPrice.setText(mAmount+"");
 
 
 

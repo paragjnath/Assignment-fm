@@ -28,6 +28,7 @@ public class MenuActivity extends AppCompatActivity {
     private List<Menu> mMenu;
     private RelativeLayout btnConfirm;
     private Toolbar mToolbar;
+    private String mRestaurantName;
 
 
     @Override
@@ -40,7 +41,9 @@ public class MenuActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
-            getSupportActionBar().setTitle(bundle.getString("name"));
+
+            mRestaurantName = bundle.getString("name");
+            getSupportActionBar().setTitle(mRestaurantName);
         }
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,6 +86,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
                 intent.putParcelableArrayListExtra("selectedMenu", checkedMenu);
+                intent.putExtra("name",mRestaurantName);
                 startActivity(intent);
 
             }
