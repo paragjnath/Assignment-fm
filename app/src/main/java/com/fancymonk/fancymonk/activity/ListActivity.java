@@ -1,6 +1,5 @@
 package com.fancymonk.fancymonk.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
