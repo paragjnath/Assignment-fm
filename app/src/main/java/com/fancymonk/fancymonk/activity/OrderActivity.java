@@ -1,4 +1,4 @@
-package com.fancymonk.fancymonk;
+package com.fancymonk.fancymonk.activity;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fancymonk.fancymonk.R;
 import com.fancymonk.fancymonk.activity.ConfirmActivity;
 import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
 import com.fancymonk.fancymonk.adapter.OrderRecyclerViewAdapter;

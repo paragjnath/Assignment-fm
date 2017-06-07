@@ -11,12 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
-import com.fancymonk.fancymonk.OrderActivity;
+
 import com.fancymonk.fancymonk.R;
 import com.fancymonk.fancymonk.adapter.MenuRecyclerViewAdapter;
 import com.fancymonk.fancymonk.model.Menu;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -28,7 +30,6 @@ public class MenuActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle!= null)
-        {
+        if (bundle != null) {
             getSupportActionBar().setTitle(bundle.getString("name"));
         }
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -48,14 +48,14 @@ public class MenuActivity extends AppCompatActivity {
 
         //change the color of the upArrow to white
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(ContextCompat.getColor(this,R.color.grey), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.grey), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         btnConfirm = (RelativeLayout) findViewById(R.id.btnConfirm);
 
         mMenu = new ArrayList<Menu>();
-        for(int i=1; i<10; i++){
+        for (int i = 1; i < 10; i++) {
 
-            Menu menuItem = new Menu("Menu item "+i, "Menu description "+i, i*10.0,false);
+            Menu menuItem = new Menu("Menu item " + i, "Menu description " + i, i * 10.0, false);
             mMenu.add(menuItem);
         }
 
@@ -70,23 +70,23 @@ public class MenuActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 List<Menu> menu = ((MenuRecyclerViewAdapter) mAdapter).getMenuList();
                 ArrayList<Menu> checkedMenu = new ArrayList<Menu>();
 
-                for(int i = 0; i<menu.size(); i++){
+                for (int i = 0; i < menu.size(); i++) {
 
                     Menu menuItem = menu.get(i);
-                    if (menuItem.isSelected()){
+                    if (menuItem.isSelected()) {
                         checkedMenu.add(menuItem);
                     }
                 }
 
-                Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
-                intent.putParcelableArrayListExtra("selectedMenu",checkedMenu);
+                Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+                intent.putParcelableArrayListExtra("selectedMenu", checkedMenu);
                 startActivity(intent);
 
             }
         });
     }
+
 }

@@ -71,14 +71,6 @@ public class ClientRecyclerViewAdapter extends RecyclerView.Adapter<ClientRecycl
         holder.mTagOne.setText(client.getmTagOne());
         holder.mTagTwo.setText(client.getmTagTwo());
         name = client.getName();
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ctxt, MenuActivity.class);
-                intent.putExtra("name",name);
-                ctxt.startActivity(intent);
-            }
-        });
 
 
     }

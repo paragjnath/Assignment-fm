@@ -1,5 +1,7 @@
 package com.fancymonk.fancymonk.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -9,9 +11,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.fancymonk.fancymonk.R;
 import com.fancymonk.fancymonk.adapter.ClientRecyclerViewAdapter;
+import com.fancymonk.fancymonk.adapter.RecyclerItemClickListener;
 import com.fancymonk.fancymonk.model.Client;
 
 import java.util.ArrayList;
@@ -46,6 +50,15 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getApplicationContext(),MenuActivity.class);
+                        intent.putExtra("name", clientList.get(position).getName());
+                        startActivity(intent);
+                    }
+                })
+        );
 
         prepareClientData();
     }
